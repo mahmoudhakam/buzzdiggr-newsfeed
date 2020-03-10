@@ -1,0 +1,37 @@
+buzzdiggr:
+  logpath : ${SEARCH_LOG_PATH:G:/logs/search}
+  cors:
+    allowed-origins: '*'
+    allowed-methods: '*'
+    allowed-headers: '*'
+    exposed-headers: 'Authorization,Link,X-Total-Count'
+    allow-credentials: true
+    max-age: 1800
+    
+server:
+  port: 8010
+
+spring:
+  profiles:
+    active: ${ACTIVE_ENV:dev}
+  application:
+    name: BuzzdiggrSportsSearch
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: 127.0.0.1:9300
+
+kafka:
+  boot:
+    server: 127.0.0.1:9092
+  consumer:
+    group:
+      string:
+        id: group_str
+      json:
+        id: group_json
+  topic:
+    articles: articles
+    json:
+      tweet: posts
+      article: articles

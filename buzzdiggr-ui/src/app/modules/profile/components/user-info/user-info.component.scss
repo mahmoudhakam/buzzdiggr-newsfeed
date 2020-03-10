@@ -1,0 +1,37 @@
+.profile-img-container {
+  width: 94pt;
+  display: block;
+  margin: auto;
+  border-radius: 17%;
+  overflow: hidden;
+  cursor: pointer;
+
+  * {
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+  }
+  img {
+    width: 100%;
+  }
+
+  ngx-avatar {
+    width: 100%;
+
+    ::ng-deep {
+      .avatar-container {
+        display: block;
+        margin: auto;
+      }
+    }
+  }
+}
+
+.name {
+  text-align: center;
+  margin: 20pt auto 10pt;
+}
+
+.id {
+  display: inline-block;
+}
+

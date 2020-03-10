@@ -1,0 +1,57 @@
+<div class="container">
+    <h1 class="text-center title">Welcome 👋 to buzzdiggr</h1>
+    <div *ngIf="showLoading; else elseBlock">
+        <div class="ui segment">
+            <div class="ui active dimmer">
+                <div class="ui massive text loader">Searching</div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+        </div>
+    </div>
+    <ng-template #elseBlock>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" [(ngModel)]="q" name="q" placeholder="type here">
+                <button (click)="load()">search</button>
+            </div>
+            
+        </div>
+
+        <div class="row">
+            Filters:
+            <div class="grouped inline fields">
+                <div *ngFor="let item of items; let i = index" class="col-md-3">
+                    <div (click)="logText(i)" class="ui radio checkbox">
+                        <input type="radio" name="fruit" checked="checked">
+                        <label>{{item.name}}</label>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="row" *ngIf="!noDataFound">
+                <div class="col-md-12">
+                    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+                </div>
+                <div class="col-md-12">
+                    <ngx-paginate [page]="pageState" (pageChange)='pageChanged($event)' [options]="options" (pageSizeChange)='pageChanged($event)'>
+                    </ngx-paginate>
+
+                </div>
+            </div>
+
+            <div class="row" *ngIf="noDataFound">
+                <div class="col-md-12">
+                    No Result Found
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
+
+
+</div>

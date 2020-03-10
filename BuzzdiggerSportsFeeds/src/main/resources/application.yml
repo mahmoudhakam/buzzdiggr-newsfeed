@@ -1,0 +1,47 @@
+buzzdiggr:
+  logpath : ${Feeds_LOG_PATH:G:/logs/newsfeeds}
+  youmseven: https://www.youm7.com/Section/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9/298/1
+  shrouk: https://www.shorouknews.com/sports
+  yallakora: https://www.yallakora.com/
+
+oauth:
+  consumerKey: xxx
+  consumerSecret: ccc
+  accessToken: ddd
+  accessTokenSecret:  eeee
+  
+  
+server:
+  port: 8011
+
+spring:
+  profiles:
+    active: ${ACTIVE_ENV:dev}
+  application:
+    name: BuzzdiggrSportsSearch
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: 127.0.0.1:9300
+elasticsearch:
+  index:
+    stream: social
+    crawler: web
+  type:
+      tweet: post
+      article: article
+
+kafka:
+  boot:
+    server: 127.0.0.1:9092
+  consumer:
+    group:
+      string:
+        id: group_str
+      json:
+        id: group_json
+  topic:
+    articles: articles
+    json:
+      tweet: posts
+      article: articles
